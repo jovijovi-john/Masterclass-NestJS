@@ -19,3 +19,19 @@
 <hr>
 
 -> Veja no app.controller que o AppController recebe um AppService. O app.module instancia esse AppController, mas em nenhum momento passa um AppService. Em app.service, o nest através do decorator @injectable identifica que a classe AppService e automaticamente injeta ela no AppController através dos providers. O nome disso é **Injeção de dependências**
+
+## Dependências
+
+> Prisma: npm i prisma -D
+
+```shell
+npx prisma init --datasource-provider SQLite
+npx prisma migrate dev
+```
+
+> Prisma Client: npm i @prisma/client
+> Class Validator: npm i class-validator
+
+## Outros comandos importantes
+
+* npm run lint -- --fix

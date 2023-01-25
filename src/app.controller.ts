@@ -1,12 +1,16 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Body, Post } from '@nestjs/common';
 
-@Controller()
+import { CreateTeamMemberBody } from './dtos/create-team-member-body';
+import { RocketMembersRepository } from './repositories/rocket-members-repository';
+
+@Controller('app') // todas as rotas daqui estarão dentro de /app
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private rocketMembersRepostitory: RocketMembersRepository) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post('hello')
+  async getHello(@Body() body: CreateTeamMemberBody) {
+    const { name, function: memberFunction } = body;
+
+    await this.rocketMembersRepostitory.create(name, memberFunction);
   }
 }
